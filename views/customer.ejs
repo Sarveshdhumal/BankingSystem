@@ -1,0 +1,71 @@
+<%- include("header"); %>
+<%  if(term === 2) { %>
+<div class="alert alert-danger pop in-up" role="alert">
+    <strong><%= success %></strong>
+</div>
+<% } %>
+<%  if(term === 1) { %>
+<div class="alert alert-success pop in-up" role="alert">
+    <strong><%= success %></strong>
+</div>
+<% } %>
+<%  if(term === 3) { %>
+<div class="alert alert-warning pop in-up" role="alert">
+    <strong><%= success %></strong>
+</div>
+<% } %>
+<% if(term === 0) { %>
+<div class="row ops">
+    <% } else { %>
+    <div class="row ops in-ups">
+        <% } %>
+
+        <div class="col">
+            <p class="custom">Our Customers</p>
+            <table class="table table-bordered col2">
+                <thead>
+                    <tr>
+                        <th scope="col" class="disp">User ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col" class="disp">Email</th>
+                        <th scope="col">Current Balance</th>
+                        <th scope="col">Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% newList.forEach(function(user) { %>
+                    <tr class="hovera">
+                        <th scope="row" class="disp"><%= user.Customer_ID %></th>
+                        <td><%= user.Name %></td>
+                        <td class="disp"><%= user.Email %></td>
+                        <td>₹ <%= user.Current_Balance %></td>
+                        <td>
+                            <form action="transfer.html?id=<%=user.Customer_ID%>" method="post">
+                                <button class="dropper shine" type="submit">view</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <%  }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    document.onreadystatechange = function () {
+        if (document.readyState !== "complete") {
+            document.querySelector(
+                "body").style.visibility = "hidden";
+            document.querySelector(
+                "#loader").style.visibility = "visible";
+        } else {
+            document.querySelector(
+                "#loader").style.display = "none";
+            document.querySelector(
+                "body").style.visibility = "visible";
+        }
+    };
+</script>
+
+</html>
